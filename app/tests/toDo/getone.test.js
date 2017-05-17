@@ -3,7 +3,7 @@ const request = require('supertest');
 const {app} = require('./../../server/app')
 const db  = require('./../../db/models')
 var {ObjectID} = require('mongodb');
-const todos = require('./../test-todos')
+const todos = require('./../testData/test-todos')
 
 
 const getOneById = it('should get a todo by id', (done) => {

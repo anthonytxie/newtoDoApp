@@ -2,14 +2,8 @@ const expect = require('expect');
 const request = require('supertest');
 const {app} = require('./../../server/app')
 const db  = require('./../../db/models')
-
-const users = [{
-  firstName: 'Anthony',
-  lastName: 'Xie'
-}, {
-  firstName: 'Isabelle',
-  lastName: "Leeson",
-}];
+var {ObjectID} = require('mongodb');
+const users = require('./../testData/test-users')
 
 const getUsers = 
   it('should get all Users', (done) => {

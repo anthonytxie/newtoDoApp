@@ -12,37 +12,37 @@ const goodDataToDo =
     const lastName = 'Xie'
 
     request(app)
-      .post('/todo')
-      .send({firstname, lastName})
+      .post('/user')
+      .send({firstName, lastName})
       .expect(200)
       .expect((res) => {
         expect(res.body.firstName).toBe(firstName);
-        expect(res.body.firstName).toBe(lastName);
+        expect(res.body.lastName).toBe(lastName);
       })
     .end((err, res) => {
         if (err) {
           return done(err);
         }
 
-        db.toDo.find().then((todos) => {
+        db.User.find().then((todos) => {
           expect(todos.length).toBe(3);
-          expect(todos[2].text).toBe(text)
+          expect(todos[2].firstName).toBe(firstName)
           done();
         }).catch((e) => done(e));
       });
   });
 
 const badDataToDo = 
-  it('should not create toDo with bad data', (done) => {
+  it('should not create user with bad data', (done) => {
     request(app)
-    .post('/todo')
+    .post('/user')
     .send({})
     .expect(400)
     .end((err, res)=> {
       if (err) {
         return done(err);
       }
-      db.toDo.find().then((todos) => {
+      db.User.find().then((todos) => {
         expect(todos.length).toBe(2)
         done();
       }).catch((e) => {

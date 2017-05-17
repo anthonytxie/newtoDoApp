@@ -1,4 +1,4 @@
-const db  = require('./../db/models')
+const db  = require('./../../db/models')
 var {ObjectID} = require('mongodb');
 
 const todos = [{

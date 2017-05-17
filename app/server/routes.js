@@ -8,7 +8,7 @@ const routes = express();
 routes.get('/', basicController.get);
 
 //users
-routes.post('/users', userController.post);
+routes.post('/user', userController.post);
 routes.get('/users', userController.getAll);
 routes.get('/users/:id', userController.getOne);
 
