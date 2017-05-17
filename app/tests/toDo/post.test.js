@@ -1,18 +1,12 @@
 const expect = require('expect');
 const request = require('supertest');
-const {app} = require('./../server/app')
-const db  = require('./../db/models')
-
-beforeEach((done) => {
-  db.toDo.remove().then((res) => {
-    done()
-  });
-});
+const {app} = require('./../../server/app')
+const db  = require('./../../db/models')
 
 
-describe('POST /todos', () => {
 
-  // good data test case
+
+const goodDataToDo = 
   it('should create a new todo', (done) => {
     var text = 'Test todo text';
 
@@ -29,13 +23,14 @@ describe('POST /todos', () => {
         }
 
         db.toDo.find().then((todos) => {
-          expect(todos.length).toBe(1);
-          expect(todos[0].text).toBe(text)
+          expect(todos.length).toBe(3);
+          expect(todos[2].text).toBe(text)
           done();
         }).catch((e) => done(e));
       });
   });
-    // test bad data
+
+const badDataToDo = 
   it('should not create toDo with bad data', (done) => {
     request(app)
     .post('/todo')
@@ -46,11 +41,15 @@ describe('POST /todos', () => {
         return done(err);
       }
       db.toDo.find().then((todos) => {
-        expect(todos.length).toBe(0)
+        expect(todos.length).toBe(2)
         done();
       }).catch((e) => {
         done(e)
       });
     });
  });
-});
+
+module.exports =  {goodDataToDo, badDataToDo}
+
+
+

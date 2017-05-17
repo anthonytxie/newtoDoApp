@@ -20,6 +20,9 @@ const toDoSchema = new Schema({
   completedAt: {
     type: Date,
     default: null
+  },
+  _user: {
+    type: Schema.ObjectId, ref: 'User'
   }
 });
 
